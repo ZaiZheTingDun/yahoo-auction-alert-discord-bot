@@ -27,7 +27,7 @@ async def check_mercari(bot: BotApp, alert: dict) -> None:
 
         if item["ItemCode"]:
             embed.url = (
-                "https://zenmarket.jp/jp/mercariproduct.aspx?itemCode="
+                "https://zenmarket.jp/ja/mercariproduct.aspx?itemCode="
                 + item["ItemCode"]
             )
 
