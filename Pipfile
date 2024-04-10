@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+aiohttp = "==3.9.3"
+aiosignal = "==1.3.1"
+alembic = "==1.13.1"
+alluka = "==0.1.4"
+attrs = "==23.2.0"
+banal = "==1.0.6"
+certifi = "==2024.2.2"
+charset-normalizer = "==3.3.2"
+colorlog = "==6.8.2"
+dataset = "==1.6.2"
+easygoogletranslate = "==0.0.4"
+frozenlist = "==1.4.1"
+hikari = "==2.0.0.dev122"
+hikari-lightbulb = "==2.3.5"
+idna = "==3.6"
+mako = "==1.3.2"
+markupsafe = "==2.1.5"
+multidict = "==6.0.5"
+python-dotenv = "==1.0.1"
+requests = "==2.31.0"
+sqlalchemy = "==1.4.51"
+typing-extensions = "==4.9.0"
+urllib3 = "==2.2.0"
+yarl = "==1.9.4"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
