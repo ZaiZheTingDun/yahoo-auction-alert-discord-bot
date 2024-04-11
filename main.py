@@ -5,9 +5,9 @@ import hikari
 import dataset
 import asyncio
 from easygoogletranslate import EasyGoogleTranslate
-from logging import info
 from yahoo import check_yahoo_auctions
 from mercari import check_mercari
+from log import log
 
 dotenv.load_dotenv()
 
@@ -23,20 +23,20 @@ async def check_alerts() -> None:
         alerts = bot.d.table.all()
 
         for alert in alerts:
-            info(f"Searching for {alert['name']}...")
+            log(f"Searching for {alert['name']}...")
             if os.getenv("ENABLE_YAHOO_AUCTION", "true") == "true":
                 try:
                     await check_yahoo_auctions(bot, translator, alert)
                 except Exception as e:
-                    info(f"Error: {e}")
+                    log(f"Error: {e}")
 
             if os.getenv("ENABLE_MERCARI", "true") == "true":
                 try:
                     await check_mercari(bot, alert)
                 except Exception as e:
-                    info(f"Error: {e}")
+                    log(f"Error: {e}")
 
-        info(
+        log(
             f"Done checking alerts. Sleeping for {os.getenv('CHECK_INTERVAL', 60)}s..."
         )
         await asyncio.sleep(int(os.getenv("CHECK_INTERVAL", 60)))
@@ -44,7 +44,7 @@ async def check_alerts() -> None:
 
 @bot.listen()
 async def on_ready(event: hikari.StartingEvent) -> None:
-    info("Starting event loop...")
+    log("Starting event loop...")
     asyncio.create_task(check_alerts())
 
 
