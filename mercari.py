@@ -17,7 +17,7 @@ async def check_mercari(bot: BotApp, alert: dict) -> None:
     content = json.loads(res.json()["d"])
 
     for item in content["Items"]:
-        if bot.d.synced.find_one(name=item["ItemCode"]):
+        if bot.d.synced.find_one(name=item["ItemCode"], channel_id=alert["channel_id"]):
             info("[mercari] already synced — up to date")
             continue
 
@@ -45,4 +45,4 @@ async def check_mercari(bot: BotApp, alert: dict) -> None:
         embed.set_footer(f"Source: Mercari — #{item['ItemCode']}")
 
         await bot.rest.create_message(alert["channel_id"], embed=embed)
-        bot.d.synced.insert({"name": item["ItemCode"]})
+        bot.d.synced.insert({"name": item["ItemCode"], "channel_id": alert["channel_id"]})
