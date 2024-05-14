@@ -1,3 +1,8 @@
+# Import!
+Please ensure you have the installation of Chrome and ChromeDriver, since this brunch is using selenium with Chrome.
+
+Follow this link to download: https://googlechromelabs.github.io/chrome-for-testing/
+
 # Yahoo Auction and Mercari Discord Bot
 
 This project is a Discord bot designed to find newly posted articles on Yahoo Auction and Mercari and alert the user on a Discord server. The bot employs an unofficial Google Translator API to translate the article names from Japanese, which can occasionally result in instability.
