@@ -5,9 +5,8 @@ import hikari
 import dataset
 import asyncio
 from easygoogletranslate import EasyGoogleTranslate
-from yahoo import check_yahoo_auctions
 from mercari import check_mercari
-from log import log
+from log import log, error
 
 dotenv.load_dotenv()
 
@@ -20,15 +19,12 @@ bot.d.synced = db["synced_alerts"]
 
 async def check_alerts() -> None:
     while True:
-        alerts = bot.d.table.all()
+        all_alerts = bot.d.table.all()
 
-        for alert in alerts:
+        for alert in all_alerts:
             log(f"Searching for {alert['name']}...")
             if os.getenv("ENABLE_YAHOO_AUCTION", "true") == "true":
-                try:
-                    await check_yahoo_auctions(bot, translator, alert)
-                except Exception as e:
-                    log(f"Error: {e}")
+                error("Doesn't support YAHOO yet")
 
             if os.getenv("ENABLE_MERCARI", "true") == "true":
                 try:

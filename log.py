@@ -1,7 +1,12 @@
 import os
-from logging import info
+import logging
 
 
 def log(logs: str) -> None:
     if os.getenv("SHOW_LOG", "true") == "true":
-        info(logs)
+        logging.info(logs)
+
+
+def error(logs: str) -> None:
+    if os.getenv("SHOW_LOG", "true") == "true":
+        logging.error(logs)
