@@ -6,7 +6,7 @@ import dataset
 import asyncio
 from easygoogletranslate import EasyGoogleTranslate
 from mercari import check_mercari
-from log import log, error
+import logger
 
 dotenv.load_dotenv()
 
@@ -22,17 +22,17 @@ async def check_alerts() -> None:
         all_alerts = bot.d.table.all()
 
         for alert in all_alerts:
-            log(f"Searching for {alert['name']}...")
+            logger.log(f"Searching for {alert['name']}...")
             if os.getenv("ENABLE_YAHOO_AUCTION", "true") == "true":
-                error("Doesn't support YAHOO yet")
+                logger.error("Doesn't support YAHOO yet")
 
             if os.getenv("ENABLE_MERCARI", "true") == "true":
                 try:
                     await check_mercari(bot, alert)
                 except Exception as e:
-                    log(f"Error: {e}")
+                    logger.log(f"Error: {e}")
 
-        log(
+        logger.log(
             f"Done checking alerts. Sleeping for {os.getenv('CHECK_INTERVAL', 60)}s..."
         )
         await asyncio.sleep(int(os.getenv("CHECK_INTERVAL", 60)))
@@ -40,8 +40,8 @@ async def check_alerts() -> None:
 
 @bot.listen()
 async def on_ready(event: hikari.StartingEvent) -> None:
-    log("Starting event loop...")
-    asyncio.create_task(check_alerts())
+    logger.log("Starting event loop...")
+    await asyncio.create_task(check_alerts())
 
 
 @bot.command

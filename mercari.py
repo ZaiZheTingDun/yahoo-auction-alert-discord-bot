@@ -2,7 +2,7 @@ from lightbulb import BotApp
 from hikari import Embed, Color
 from selenium.webdriver.chrome.options import Options
 
-from log import log, error
+from logger import log, error
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
