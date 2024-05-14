@@ -3,3 +3,5 @@
 .env
 *.db*
 .idea
+__pycache__
+.DS_Store
