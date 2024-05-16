@@ -43,14 +43,14 @@ async def check_mercari(bot: BotApp, alert: dict) -> None:
                     + code
             )
 
-            if img:
-                embed.set_image(img)
+        if img:
+            embed.set_image(img)
 
-            if price:
-                try:
-                    embed.add_field("Price", price)
-                except Exception as e:
-                    error(str(e))
+        if price:
+            try:
+                embed.add_field("Price", price)
+            except Exception as e:
+                error(str(e))
 
         embed.set_footer(f"Source: Mercari — #{code}")
 
