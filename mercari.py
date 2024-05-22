@@ -13,7 +13,7 @@ async def check_mercari(bot: BotApp, alert: dict) -> None:
         },
     )
 
-    content = json.loads(res.json())
+    content = json.loads(res.text)
     items = content["items"]
 
     for item in items:
